@@ -14,7 +14,7 @@ ApplicationWindow {
     height: 640
     minimumHeight: 640
     minimumWidth: 640
-    title: qsTr("CustomSkin for LoL - " + CSLOL_VERSION)
+    title: qsTr("CustomSkin for LoL - QQ-group：787470042)" + CSLOL_VERSION)
 
     Settings {
         id: settings
@@ -97,10 +97,6 @@ ApplicationWindow {
             let name = cslolToolBar.profilesCurrentName
             let mods = cslolModsView.saveProfile()
             if (checkGamePath()) {
-                if (CSLOLUtils.checkGamePathAsia(cslolTools.leaguePath)) {
-                    window.showUserError("Asian servers not supported", "因封禁，亚洲服不支持!")
-                    return;
-                }
                 cslolTools.saveProfile(name, mods, run, settings.suppressInstallConflicts, settings.verbosePatcher)
             }
         }
