@@ -63,12 +63,6 @@ bool CSLOLUtils::checkGamePathAsia(QString path) {
     if (path.isEmpty()) {
         return false;
     }
-    if (auto info = QFileInfo(path + "/TerSafe.dll"); info.exists()) {
-        return true;
-    }
-    if (auto info = QFileInfo(path + "/GbSpy.dll"); info.exists()) {
-        return true;
-    }
     return false;
 }
 
