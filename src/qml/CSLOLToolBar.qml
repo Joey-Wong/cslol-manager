@@ -30,7 +30,7 @@ ToolBar {
             font.family: "FontAwesome"
             onClicked: cslolToolBar.openSideMenu()
             CSLOLToolTip {
-                text: qsTr("Open settings dialog")
+                text: qsTr("设置")
                 visible: parent.hovered
             }
         }
@@ -69,7 +69,7 @@ ToolBar {
             font.family: "FontAwesome"
             onClicked: cslolToolBar.openLogs()
             CSLOLToolTip {
-                text: qsTr("Open log file")
+                text: qsTr("打开日志文件")
                 visible: parent.hovered
             }
         }
@@ -125,7 +125,7 @@ ToolBar {
             }
             enabled: !isBussy || window.patcherRunning
             CSLOLToolTip {
-                text: qsTr("Runs patcher for currently selected mods")
+                text: qsTr("启动/停止")
                 visible: parent.hovered
             }
         }

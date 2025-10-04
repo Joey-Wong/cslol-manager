@@ -1,6 +1,8 @@
 name: BuildIt
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - master
 jobs:
   build:
     runs-on: windows-2022

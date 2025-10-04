@@ -359,7 +359,7 @@ ColumnLayout {
                                 cslolModsView.modRemoved(modName)
                             }
                             CSLOLToolTip {
-                                text: qsTr("Remove this mod")
+                                text: qsTr("移除皮肤")
                                 visible: parent.hovered
                             }
                         }
@@ -371,7 +371,7 @@ ColumnLayout {
                                 cslolModsView.modExport(modName)
                             }
                             CSLOLToolTip {
-                                text: qsTr("Export this mod")
+                                text: qsTr("导出皮肤")
                                 visible: parent.hovered
                             }
                         }
@@ -435,7 +435,7 @@ ColumnLayout {
                 return checkState === Qt.Checked ? Qt.Unchecked : Qt.Checked
             }
             CSLOLToolTip {
-                text: qsTr("Enable all mods")
+                text: qsTr("开启所有皮肤")
                 visible: parent.hovered
             }
             onCheckedChanged: {
@@ -448,7 +448,7 @@ ColumnLayout {
             id: cslolModsViewSearchBox
             enabled: !isBussy || window.patcherRunning
             Layout.fillWidth:  true
-            placeholderText: "Search..."
+            placeholderText: "搜索..."
             onTextEdited: {
                 search = text.toLowerCase()
                 searchUpdate()
@@ -461,7 +461,7 @@ ColumnLayout {
             onClicked: cslolModsView.tryRefresh()
             Material.background: Material.primaryColor
             CSLOLToolTip {
-                text: qsTr("Refresh")
+                text: qsTr("刷新")
                 visible: parent.hovered
             }
         }
@@ -472,7 +472,7 @@ ColumnLayout {
             onClicked: cslolModsView.createNewMod()
             Material.background: Material.primaryColor
             CSLOLToolTip {
-                text: qsTr("Create new mod")
+                text: qsTr("制作皮肤")
                 visible: parent.hovered
             }
         }
@@ -483,7 +483,7 @@ ColumnLayout {
             onClicked: cslolModsView.installFantomeZip()
             Material.background: Material.primaryColor
             CSLOLToolTip {
-                text: qsTr("Import new mod")
+                text: qsTr("导入皮肤")
                 visible: parent.hovered
             }
         }
