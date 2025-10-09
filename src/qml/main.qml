@@ -14,7 +14,7 @@ ApplicationWindow {
     height: 640
     minimumHeight: 640
     minimumWidth: 640
-    title: qsTr("CustomSkin for LoL [QQ群:787470042] " + CSLOL_VERSION)
+    title: qsTr("CustomSkin for LoL [QQ群:787470042] 免费软件/禁止倒卖" + CSLOL_VERSION)
 
     Settings {
         id: settings
