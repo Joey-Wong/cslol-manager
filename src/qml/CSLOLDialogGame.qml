@@ -11,7 +11,7 @@ Dialog {
     standardButtons: DialogButtonBox.Ok
     closePolicy: Popup.NoAutoClose
     modal: true
-    title: "选择LOL启动程序 \"League of Legends.exe\"(必须是以管理员身份运行该软件) \r\n[国服] WeGameApps/英雄联盟/Game/League of Legends.exe\r\n[外服] Riot Games/League of Legends/Game/League of Legends.exe"
+    title: "[必须以管理员身份运行该软件]\r\n选择LOL启动程序 \"League of Legends.exe\"\r\n[国服] WeGameApps/英雄联盟/Game/League of Legends.exe\r\n[外服] Riot Games/League of Legends/Game/League of Legends.exe"
     font.family: "FontAwesome"
     Overlay.modal: Rectangle {
         color: "#aa333333"
