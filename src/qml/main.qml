@@ -405,6 +405,6 @@ ApplicationWindow {
         }
         firstTick = true;
         cslolTools.init()
-        cslolDialogUpdate.checkForUpdates()
+        // cslolDialogUpdate.checkForUpdates()
     }
 }
