@@ -110,12 +110,20 @@ QString CSLOLUtils::detectGamePath() {
 }
 
 QString CSLOLUtils::isPlatformUnsuported() {
+    QString path = QCoreApplication::applicationDirPath();
+    DWORD const attrs = GetFileAttributesW((PCWSTR)path.utf16());
+    if (attrs != INVALID_FILE_ATTRIBUTES) {
+        if (attrs & (FILE_ATTRIBUTE_OFFLINE | FILE_ATTRIBUTE_RECALL_ON_DATA_ACCESS)) {
+            return "OneDrive detected!";
+        }
+    }
+
     if (QFileInfo info(QCoreApplication::applicationDirPath() + "/admin_allowed.txt"); info.exists()) {
         return "";
     }
 
     QString result{""};
-    return result;
+    return "";
 
     HANDLE token = {};
     if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &token)) {
@@ -123,7 +131,7 @@ QString CSLOLUtils::isPlatformUnsuported() {
         DWORD size = sizeof(TOKEN_ELEVATION);
         if (GetTokenInformation(token, TokenElevation, &elevation, sizeof(elevation), &size)) {
             if (elevation.TokenIsElevated) {
-                result = "Try running without admin at least once.\nIf this issue still persist import FIX-ADMIN.reg";
+                result = "Try running without admin at least once.\nIf this issue still persist run cslol-diag.exe!\n";
             }
         }
         CloseHandle(token);
