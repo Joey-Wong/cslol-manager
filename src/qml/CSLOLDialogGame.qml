@@ -11,7 +11,7 @@ Dialog {
     standardButtons: DialogButtonBox.Ok
     closePolicy: Popup.NoAutoClose
     modal: true
-    title: "Select \"League of Legends.exe\""
+    title: "[必须以管理员身份运行该软件]\r\n选择LOL启动程序 \"League of Legends.exe\"\r\n[国服] WeGameApps/英雄联盟/Game/League of Legends.exe\r\n[外服] Riot Games/League of Legends/Game/League of Legends.exe"
     font.family: "FontAwesome"
     Overlay.modal: Rectangle {
         color: "#aa333333"
@@ -45,22 +45,22 @@ Dialog {
         DialogButtonBox {
             id: dialogButtonBox
             ToolButton {
-                text: qsTr("Detect")
+                text: qsTr("自动获取")
                 onClicked: {
                     let detected = CSLOLUtils.detectGamePath()
                     if (detected === "") {
-                        window.showUserError("Failed to detect game path", "Make sure LeagueClient is running to enable detect feature!")
+                        window.showUserError("获取游戏路径失败", "请确保LOL正在运行(在游戏大厅即可,无需进入游戏对局)")
                     } else {
                         cslolDialogGame.selected(detected)
                     }
                 }
             }
             ToolButton {
-                text: qsTr("Browse")
+                text: qsTr("选择")
                 onClicked: cslolDialogLolPath.open()
             }
             ToolButton {
-                text: qsTr("Close")
+                text: qsTr("关闭")
                 onClicked: cslolDialogGame.close()
                 DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
             }

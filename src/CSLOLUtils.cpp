@@ -103,10 +103,8 @@ QString CSLOLUtils::detectGamePath() {
         DWORD size = 32767;
         if (QueryFullProcessImageNameW(handle, 0, buffer, &size) != 0) {
             if (auto result = checkGamePath(QString::fromWCharArray(buffer, size)); !result.isEmpty()) {
-                if (!checkGamePathAsia(result)) {
-                    CloseHandle(handle);
-                    return result;
-                }
+                CloseHandle(handle);
+                return result;
             }
         }
 

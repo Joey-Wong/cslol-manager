@@ -14,7 +14,7 @@ ApplicationWindow {
     height: 640
     minimumHeight: 640
     minimumWidth: 640
-    title: qsTr("CustomSkin for LoL - " + CSLOL_VERSION)
+    title: qsTr("CustomSkin for LoL [QQ群:787470042] " + CSLOL_VERSION)
 
     Settings {
         id: settings
@@ -97,10 +97,6 @@ ApplicationWindow {
             let name = cslolToolBar.profilesCurrentName
             let mods = cslolModsView.saveProfile()
             if (checkGamePath()) {
-                if (CSLOLUtils.checkGamePathAsia(cslolTools.leaguePath)) {
-                    window.showUserError("Asian servers not supported", "因封禁，亚洲服不支持!")
-                    return;
-                }
                 cslolTools.saveProfile(name, mods, run, settings.suppressInstallConflicts, settings.verbosePatcher)
             }
         }
@@ -401,6 +397,49 @@ ApplicationWindow {
         }
     }
 
+    // 启动对话框
+    Dialog {
+        id: startupDialog
+        width: 400
+        height: 200
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+        standardButtons: DialogButtonBox.Ok
+        closePolicy: Popup.NoAutoClose
+        modal: true
+        title: "温馨提示"
+
+        Overlay.modal: Rectangle {
+            color: "#aa333333"
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            Label {
+                text: "本软件为开源软件,如果是花钱买的,说明你被骗了,请去退款"
+                font.pointSize: 14
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+        }
+
+        footer: RowLayout {
+            Layout.fillWidth: true
+            Item {
+                Layout.fillWidth: true
+            }
+            DialogButtonBox {
+                ToolButton {
+                    text: "我知道了"
+                    onClicked: startupDialog.close()
+                    DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
+                }
+            }
+        }
+    }
+
     Component.onCompleted: {
         if (settings.windowMaximised) {
             if (window.visibility !== ApplicationWindow.Maximized) {
@@ -408,7 +447,13 @@ ApplicationWindow {
             }
         }
         firstTick = true;
-        cslolTools.init()
-        cslolDialogUpdate.checkForUpdates()
+
+        // 先显示启动对话框
+        startupDialog.open()
+        startupDialog.accepted.connect(function() {
+            // 对话框关闭后执行原有的初始化逻辑
+            cslolTools.init()
+            // cslolDialogUpdate.checkForUpdates()
+        })
     }
 }

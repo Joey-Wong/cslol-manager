@@ -1,5 +1,9 @@
 name: BuildIt
 on:
+  push:
+    branches:
+      - master
+      - main_cn
   workflow_dispatch:
 jobs:
   build:
