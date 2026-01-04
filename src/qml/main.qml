@@ -433,7 +433,7 @@ ApplicationWindow {
             DialogButtonBox {
                 ToolButton {
                     text: "我知道了"
-                    onClicked: startupDialog.close()
+                    onClicked: startupDialog.accept()
                     DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
                 }
             }
