@@ -99,25 +99,12 @@ if (WIN32)
 endif()
 
 if (WIN32)
-    FetchContent_Declare(
-        cslol-patcher
-        URL      https://github.com/Joey-Wong/cslol-patcher/releases/download/fix-13error/cslol-patcher.zip
-        URL_HASH SHA256=e1afd542c409b23824eb0c37e7de492d42347f300aa3719918daa551056db38a
-        CONFIGURE_COMMAND ""
-        BUILD_COMMAND ""
-        DOWNLOAD_EXTRACT_TIMESTAMP True
+    add_library(cslol-patcher SHARED IMPORTED GLOBAL)
+    set_target_properties(cslol-patcher PROPERTIES
+        IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/vendor/cslol-patcher/cslol-dll.lib"
+        IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/vendor/cslol-patcher/cslol-dll.dll"
+        INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/vendor/cslol-patcher"
     )
-    FetchContent_GetProperties(cslol-patcher)
-    if(NOT cslol-patcher_POPULATED)
-        FetchContent_Populate(cslol-patcher)
-
-        add_library(cslol-patcher SHARED IMPORTED)
-        set_target_properties(cslol-patcher PROPERTIES
-            IMPORTED_IMPLIB "${cslol-patcher_SOURCE_DIR}/cslol-dll.lib"
-            IMPORTED_LOCATION "${cslol-patcher_SOURCE_DIR}/cslol-dll.dll"
-            INTERFACE_INCLUDE_DIRECTORIES "${cslol-patcher_SOURCE_DIR}"
-        )
-    endif()
 
     target_link_libraries(cslol-lib PUBLIC cslol-patcher)
     add_custom_command(TARGET mod-tools POST_BUILD
