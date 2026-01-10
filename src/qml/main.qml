@@ -301,7 +301,6 @@ ApplicationWindow {
             }
         }
     }
-
     CSLOLDialogError {
         id: cslolDialogError
     }
@@ -313,6 +312,16 @@ ApplicationWindow {
     CSLOLDialogUpdate {
         id: cslolDialogUpdate
         enableUpdates: settings.enableUpdates
+    }
+
+    CSLOLDialogTipInfo {
+        id: cslolDialogTipInfo
+        onClosed: function() {
+            // 检查游戏路径并自动运行
+            if(checkGamePath() && settings.enableAutoRun) {
+                cslolToolBar.saveProfileAndRun(true)
+            }
+        }
     }
 
     CSLOLTools {
@@ -329,9 +338,14 @@ ApplicationWindow {
             for(let fileName in mods) {
                 cslolModsView.addMod(fileName, mods[fileName], fileName in profileMods)
             }
+
+            // 检查游戏路径并自动运行
+            /*
             if(checkGamePath() && settings.enableAutoRun) {
                 cslolToolBar.saveProfileAndRun(true)
             }
+            */
+            cslolDialogTipInfo.open()
         }
         onModDeleted: {}
         onInstalledMod: function(fileName, infoData) {
@@ -405,6 +419,7 @@ ApplicationWindow {
         }
         firstTick = true;
         cslolTools.init()
+        // cslolDialogTipInfo.open()
         // cslolDialogUpdate.checkForUpdates()
     }
 }
