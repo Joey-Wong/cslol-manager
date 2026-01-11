@@ -15,6 +15,7 @@ public:
     Q_INVOKABLE QString checkGamePath(QString path);
     Q_INVOKABLE bool checkGamePathAsia(QString path);
     Q_INVOKABLE QString detectGamePath();
+    Q_INVOKABLE QString removeCSLOLMarker(QString filePath);
 
     static QString isPlatformUnsuported();
     static void relaunchAdmin(int argc, char *argv[]);
