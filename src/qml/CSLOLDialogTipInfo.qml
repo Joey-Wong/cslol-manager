@@ -24,7 +24,7 @@ Dialog {
         Label {
             anchors.centerIn: parent
             font.pointSize: 16
-            text: "该软件是开源免费软件,如果你是买的,请退款!"
+            text: "该软件是开源免费软件,本群仅做汉化及更新部分\r\n[更新QQ群] 787470042"
             font.family: "FontAwesome"
         }
     }
