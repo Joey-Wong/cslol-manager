@@ -19,6 +19,33 @@ QString CSLOLUtils::fromFile(QString file) {
     return url.toLocalFile();
 }
 
+QString CSLOLUtils::removeCSLOLMarker(QString filePath) {
+    if (filePath.isNull() || filePath.isEmpty()) {
+        return filePath;
+    }
+    
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadOnly)) {
+        return filePath;
+    }
+    
+    QByteArray content = file.readAll();
+    file.close();
+    
+    const QString marker = "CSLOL_IS_YYDS";
+    if (content.startsWith(marker.toUtf8())) {
+        // 去除标记
+        QByteArray newContent = content.mid(marker.size());
+        
+        if (file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+            file.write(newContent);
+            file.close();
+        }
+    }
+    
+    return filePath;
+}
+
 QString CSLOLUtils::toFile(QString file) {
     if (file.isNull() || file.isEmpty()) {
         return "";

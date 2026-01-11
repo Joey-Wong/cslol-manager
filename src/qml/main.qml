@@ -235,7 +235,11 @@ ApplicationWindow {
     CSLOLDialogOpenZipFantome {
         id: cslolDialogOpenZipFantome
         onAccepted: function() {
-            cslolTools.installFantomeZip(CSLOLUtils.fromFile(file))
+            var filePath = CSLOLUtils.fromFile(file);
+            // 移除CSLOL标记（如果存在）
+            CSLOLUtils.removeCSLOLMarker(filePath);
+            // 执行安装操作
+            cslolTools.installFantomeZip(filePath);
         }
     }
 
